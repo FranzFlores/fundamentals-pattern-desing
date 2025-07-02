@@ -37,20 +37,20 @@ interface NotificationFactory {
 // Fábricas Concretas
 class EmailFactory implements NotificationFactory {
     createNotification(): Notification {
-      return new Email();
+        return new Email();
     }
 }
 
 class SMSFactory implements NotificationFactory {
     createNotification(): Notification {
-      return new SMS();
+        return new SMS();
     }
 }
 
 // Cliente
 const main = (factory: NotificationFactory) => {
-   const notification =  factory.createNotification();
-   notification.send('Mensaje de Notificación');
+    const notification = factory.createNotification();
+    notification.send('Mensaje de Notificación');
 }
 
 // Uso
