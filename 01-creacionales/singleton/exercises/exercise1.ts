@@ -1,3 +1,15 @@
+/**
+ *  Ejercicio 1 – Básico: Configuración global
+    Objetivo: Crear una clase AppConfig que almacene una configuración global 
+    (como el nombre de la app y la versión) usando el patrón Singleton.
+
+    Requisitos:
+    - La clase debe tener propiedades: appName y version.
+    - Debes usar el patrón Singleton para asegurar que solo existe una instancia de AppConfig.
+    - Simula el uso desde distintos archivos creando múltiples referencias (aunque estés en un solo archivo).
+ *
+ */
+
 class AppConfig {
     private static instance: AppConfig;
     public appName: string = '';
