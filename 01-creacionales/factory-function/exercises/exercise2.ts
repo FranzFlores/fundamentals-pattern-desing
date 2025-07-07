@@ -17,6 +17,13 @@
     Extra: Valida que basePrice sea mayor que cero.
  */
 
+type Product = {
+    name: string;
+    basePrice: number;
+    taxRate: number;
+    finalPrice: number;
+};
+
 export const createProduct = (name: string, basePrice: number, taxRate: number = 0.12) => {
     if (basePrice <= 0) {
         throw new Error('El precio base debe ser mayor a cero');
