@@ -23,7 +23,7 @@ class MP4Player implements Player {
     }
 }
 
-abstract class Platform {
+abstract class OperatingSystem {
     protected player: Player;
 
     constructor(player: Player) {
@@ -33,14 +33,14 @@ abstract class Platform {
     abstract playMultimedia(file: string): void;
 }
 
-class WindowsPlatform extends Platform {
+class WindowsOperatingSystem extends OperatingSystem {
     override playMultimedia(file: string): void {
         console.log('\nReproduciendo desde Windows');
         this.player.play(file);
     }
 }
 
-class LinuxPlatform extends Platform {
+class LinuxOperatingSystem extends OperatingSystem {
     override playMultimedia(file: string): void {
         console.log('\nReproduciendo desde Linux');
         this.player.play(file);
@@ -48,10 +48,10 @@ class LinuxPlatform extends Platform {
 }
 
 const main  = () => {
-    const mp3Player = new WindowsPlatform(new MP3Player());
+    const mp3Player = new WindowsOperatingSystem(new MP3Player());
     mp3Player.playMultimedia('song.mp3');
 
-    const mp4Player = new LinuxPlatform(new MP4Player());
+    const mp4Player = new LinuxOperatingSystem(new MP4Player());
     mp4Player.playMultimedia('video.mp4');
 }
 
