@@ -11,7 +11,7 @@
  *
  */
 
-import { COLORS } from '../helpers/colors.ts';
+import { COLORS } from '../../helpers/colors.ts';
 
 // 1. Interfaz Document
 interface Document {
@@ -35,13 +35,20 @@ class ConfidentialDocument implements Document {
 class DocumentProxy implements Document {
   private document: ConfidentialDocument;
 
-  // TODO: Implementar el constructor de la clase DocumentProxy
+  constructor(document: ConfidentialDocument) {
+    this.document = document;
+  }
 
   displayContent(user: User): void {
-    // TODO: Implementar la lógica para verificar si el usuario tiene permisos
-    // Sólo si es admin puede ver el contenido
-    // Caso contrario, mostrar un mensaje de acceso denegado:
-    // EJ: `%cAcceso denegado. ${user.getName()}, no tienes permisos suficientes para ver este documento.`,
+    if (user.getRole() == 'admin') {
+      this.document.displayContent();
+      return;
+    }
+
+    console.log(
+      `%cAcceso denegado. ${user.getName()}, no tienes permisos suficientes para ver este documento.`,
+      COLORS.red
+    );
   }
 }
 
@@ -65,7 +72,6 @@ class User {
 }
 
 // 5. Código Cliente para probar el Proxy
-
 function main() {
   const confidentialDoc = new ConfidentialDocument(
     'Este es el contenido confidencial del documento.'
